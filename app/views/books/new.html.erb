@@ -1,0 +1,18 @@
+<h1>New Book</h1>
+
+<%= form_for @book do |f| %>
+
+  <div class='field'>
+    <%= f.label :name, 'Book Name' %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :isbn, 'ISBN' %>
+    <%= f.text_field :isbn %>
+  </div>
+
+  <div class='actions'>
+    <%= f.submit %>
+  </div>
+<% end %>
