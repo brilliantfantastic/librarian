@@ -1,0 +1,7 @@
+<h1>Book Shelf Contents</h1>
+
+<ul>
+  <% @shelf.books.each do |book| %>
+    <li><%= book.name %></li>
+  <% end %>
+</ul>
