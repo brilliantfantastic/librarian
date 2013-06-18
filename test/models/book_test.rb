@@ -26,7 +26,12 @@ describe 'A new', Book do
     book.valid?.must_equal true
   end
 
-  it 'is invalid if the name has already been taken'
+  it 'is invalid if the name has already been taken' do
+    Book.create(name: 'Nebraska', name_confirmation: 'Nebraska')
+    book = Book.new(name: 'Nebraska', name_confirmation: 'Nebraska')
+    book.valid?.must_equal false
+  end
+
   it 'is invalid if the ISBN contains letters'
   it 'is invalid if the ISBN is not 10 or 13 characters'
   it 'is valid if the ISBN is 10 or 13 digits'
