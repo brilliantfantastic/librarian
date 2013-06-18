@@ -1,7 +1,17 @@
 require 'test_helper'
 
 describe 'A new', Book do
-  it 'requires confirmation of name'
+  it 'requires confirmation of name' do
+    book = Book.new(name: 'x', name_confirmation: '')
+    book.valid?.must_equal false
+
+    book.name_confirmation = 'y'
+    book.valid?.must_equal false
+
+    book.name_confirmation = 'x'
+    book.valid?.must_equal true
+  end
+
   it 'is invalid if it has no name'
   it 'is valid if it has a name, confirmation, and no ISBN'
   it 'is invalid if the name has already been taken'
