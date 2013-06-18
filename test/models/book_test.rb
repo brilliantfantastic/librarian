@@ -32,7 +32,36 @@ describe 'A new', Book do
     book.valid?.must_equal false
   end
 
-  it 'is invalid if the ISBN contains letters'
-  it 'is invalid if the ISBN is not 10 or 13 characters'
-  it 'is valid if the ISBN is 10 or 13 digits'
+  describe 'with a name' do
+    before do
+      @book = Book.new(name: 'Frankenstein', name_confirmation: 'Frankenstein')
+    end
+
+    it 'is invalid if the ISBN contains letters' do
+      @book.isbn = '01234A5678'
+      @book.valid?.must_equal false
+    end
+
+    it 'is invalid if the ISBN is not 10 or 13 digits' do
+      @book.isbn = '012345678' # 9
+      @book.valid?.must_equal false
+
+      @book.isbn = '10123456789' # 11
+      @book.valid?.must_equal false
+
+      @book.isbn = '120123456789' # 12
+      @book.valid?.must_equal false
+
+      @book.isbn = '12340123456789' # 14
+      @book.valid?.must_equal false
+    end
+
+    it 'is valid if the ISBN is 10 or 13 digits' do
+      @book.isbn = '0123456789'
+      @book.valid?.must_equal true
+
+      @book.isbn = '1230123456789'
+      @book.valid?.must_equal true
+    end
+  end
 end
