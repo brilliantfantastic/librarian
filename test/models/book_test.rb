@@ -12,8 +12,20 @@ describe 'A new', Book do
     book.valid?.must_equal true
   end
 
-  it 'is invalid if it has no name'
-  it 'is valid if it has a name, confirmation, and no ISBN'
+  it 'is invalid if it has no name' do
+    book = Book.new
+    book.valid?.must_equal false
+
+    book.name = 'x'
+    book.name_confirmation = 'x'
+    book.valid?.must_equal true
+  end
+
+  it 'is valid if it has a name, confirmation, and no ISBN' do
+    book = Book.new(name: 'x', name_confirmation: 'x')
+    book.valid?.must_equal true
+  end
+
   it 'is invalid if the name has already been taken'
   it 'is invalid if the ISBN contains letters'
   it 'is invalid if the ISBN is not 10 or 13 characters'
