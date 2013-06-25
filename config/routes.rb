@@ -4,6 +4,7 @@ Librarian::Application.routes.draw do
   resources :sessions, only: [:create]
 
   match '/signin' => 'sessions#new'
+  match '/signout' => 'sessions#destroy'
 
   root :to => 'reading_materials#index'
 end
