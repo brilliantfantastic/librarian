@@ -25,7 +25,7 @@ feature 'Sign Up Feature Test' do
     scenario 'it creates a user in the database' do
       dhh = User.last
       dhh.username.must_equal 'dhh'
-      dhh.email.must_equal 'dhh'
+      dhh.email.must_equal 'dhh@example.com'
     end
 
     scenario 'it redirects to the root of the site' do
@@ -36,7 +36,8 @@ feature 'Sign Up Feature Test' do
   describe 'with invalid data' do
     before do
       visit new_user_path
-      create_user(username: 'dhh', email: '', password: 'x', confirmation: 'y')
+      create_user(username: 'dhh', email: 'dhh@example.com',
+                  password: 'x', confirmation: 'y')
     end
 
     scenario 'it does not create a new user' do
@@ -44,11 +45,11 @@ feature 'Sign Up Feature Test' do
     end
 
     scenario 'it displays the errors' do
-      page.must_have_content 'Invalid Email.'
+      page.must_have_content "Password doesn't match confirmation"
     end
 
     scenario 'it re-renders the sign up form' do
-      current_path.must_equal '/'
+      current_path.must_equal '/users'
     end
   end
 end
