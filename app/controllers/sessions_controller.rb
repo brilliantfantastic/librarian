@@ -5,6 +5,6 @@ class SessionsController < ApplicationController
 
   def create
     @user = login(params[:user][:email], params[:user][:password])
-    redirect_to root_path
+    redirect_to root_path, notice: "Welcome #{@user.username}"
   end
 end
