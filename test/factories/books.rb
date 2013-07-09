@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :book do
-    name "MyString"
-    isbn "MyString"
+    name 'Robinson Crusoe'
+    isbn '9781471213458'
   end
 end
