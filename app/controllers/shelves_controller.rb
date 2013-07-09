@@ -7,6 +7,7 @@ class ShelvesController < ApplicationController
 
   def show
     @shelf = BookShelf.find(params[:id])
+    ensure_shelf_visible @shelf
   end
 
   def new
