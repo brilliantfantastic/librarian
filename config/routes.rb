@@ -6,5 +6,7 @@ Librarian::Application.routes.draw do
   match '/signin' => 'sessions#new'
   match '/signout' => 'sessions#destroy'
 
+  resources :shelves, only: [:new, :create, :show]
+
   root :to => 'reading_materials#index'
 end
