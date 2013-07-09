@@ -1,5 +1,9 @@
 <div class='sidebar'>
-  <%= link_to 'Add bookshelf', new_shelf_path %>
+  <a href='#' class='add-shelf'>Add bookshelf</a>
+
+  <%= form_for BookShelf.new, url: shelves_path, remote: true do |f| %>
+    <%= f.text_field :name %>
+  <% end %>
 
   <ul class='shelves'>
     <% @shelves.each do |shelf| %>

@@ -40,7 +40,7 @@ feature 'Creating A BookShelf Feature Test' do
     scenario 'creating a shelf with valid data', js: true do
       click_link 'Add bookshelf'
       within '#new_book_shelf' do
-        fill_in 'Name', with: 'Fantasy'
+        fill_in 'book_shelf_name', with: 'Fantasy'
         page.find('#book_shelf_name').native.send_keys :return
       end
       sleep 1
