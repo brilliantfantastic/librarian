@@ -1,6 +1,11 @@
 class BooksController < ApplicationController
+  before_filter :require_login
+
   def show
+    shelf = BookShelf.find(params[:shelf_id])
+    ensure_shelf_visible shelf
     @book = Book.find(params[:id])
+    ensure_book_on_shelf @book, shelf
   end
 
   def new
