@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.create(params[:user])
     if @user.valid?
+      auto_login @user
       redirect_to root_path
     else
       render :new
