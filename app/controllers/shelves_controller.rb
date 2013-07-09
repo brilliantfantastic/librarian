@@ -2,7 +2,7 @@ class ShelvesController < ApplicationController
   before_filter :require_login
 
   def index
-    @shelves = BookShelf.all
+    @shelves = BookShelf.for(current_user)
   end
 
   def show
