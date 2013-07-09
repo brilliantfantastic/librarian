@@ -9,7 +9,7 @@ feature 'Creating A BookShelf Feature Test' do
 
   scenario 'creating a book shelf with valid data' do
     fill_in 'Name', with: 'Fiction'
-    click_on 'Create Bookshelf'
+    click_on 'Create Book shelf'
 
     shelf = BookShelf.last
     shelf.name.must_equal 'Fiction'
@@ -18,7 +18,7 @@ feature 'Creating A BookShelf Feature Test' do
 
   scenario 'submitting an empty form' do
     fill_in 'Name', with: ''
-    click_on 'Create Bookshelf'
+    click_on 'Create Book shelf'
 
     BookShelf.count.must_equal 0
     current_path.must_equal '/shelves'
