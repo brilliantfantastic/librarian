@@ -8,7 +8,7 @@ feature 'Sign In Feature Test' do
     fill_in 'Password', with: 'hampster'
     click_button 'Sign In'
 
-    current_path.must_equal root_path
+    current_path.must_equal library_path
     page.must_have_content "Welcome #{user.username}"
   end
 

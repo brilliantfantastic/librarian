@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.create(params[:user])
     if @user.valid?
       auto_login @user
-      redirect_to root_path
+      redirect_to library_path
     else
       render :new
     end

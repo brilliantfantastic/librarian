@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       flash[:error] = 'Invalid email or password'
       render :new and return
     end
-    redirect_to root_path, notice: "Welcome #{@user.username}"
+    redirect_to library_path, notice: "Welcome #{@user.username}"
   end
 
   def destroy

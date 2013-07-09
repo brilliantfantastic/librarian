@@ -28,8 +28,8 @@ feature 'Sign Up Feature Test' do
       dhh.email.must_equal 'dhh@example.com'
     end
 
-    scenario 'it redirects to the root of the site' do
-      current_path.must_equal root_path
+    scenario 'it redirects to the library' do
+      current_path.must_equal library_path
     end
   end
 
