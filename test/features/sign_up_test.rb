@@ -17,7 +17,7 @@ feature 'Sign Up Feature Test' do
 
   describe 'with valid data' do
     before do
-      visit new_user_path
+      visit signup_path
       create_user(username: 'dhh', email: 'dhh@example.com',
                   password: 'password', confirmation: 'password')
     end
@@ -35,7 +35,7 @@ feature 'Sign Up Feature Test' do
 
   describe 'with invalid data' do
     before do
-      visit new_user_path
+      visit signup_path
       create_user(username: 'dhh', email: 'dhh@example.com',
                   password: 'x', confirmation: 'y')
     end

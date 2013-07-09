@@ -1,7 +1,8 @@
 Librarian::Application.routes.draw do
-  resources :users, only: [:new, :create]
-  resources :sessions, only: [:create]
+  resources :users, only: [:create]
+  match '/signup' => 'users#new'
 
+  resources :sessions, only: [:create]
   match '/signin' => 'sessions#new'
   match '/signout' => 'sessions#destroy'
 
