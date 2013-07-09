@@ -1,0 +1,5 @@
+$('.sidebar form')[0].reset();
+$('.sidebar form').hide();
+$('.add-shelf').show();
+
+$('.shelves').append("<%= j render(partial: 'shelf_row', locals: { shelf: @shelf } ) %>");

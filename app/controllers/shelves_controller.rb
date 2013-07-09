@@ -17,10 +17,12 @@ class ShelvesController < ApplicationController
   def create
     params[:book_shelf].merge!(user_id: current_user.id)
     @shelf = BookShelf.create(params[:book_shelf])
-    if @shelf.valid?
-      redirect_to shelf_path(@shelf)
-    else
-      render :new
+    respond_to do |format|
+      format.js
+      format.html do
+        render :new and return unless @shelf.valid?
+        redirect_to shelf_path(@shelf)
+      end
     end
   end
 end
