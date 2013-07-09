@@ -1,0 +1,9 @@
+<div class='sidebar'>
+  <%= link_to 'Create New Shelf', new_shelf_path %>
+
+  <ul class='shelves'>
+    <% @shelves.each do |shelf| %>
+      <li class='shelf'><%= link_to shelf.name, shelf_path(shelf) %></li>
+    <% end %>
+  </ul>
+</div>

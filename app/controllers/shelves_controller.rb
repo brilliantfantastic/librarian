@@ -1,6 +1,10 @@
 class ShelvesController < ApplicationController
   before_filter :require_login
 
+  def index
+    @shelves = BookShelf.all
+  end
+
   def show
     @shelf = BookShelf.find(params[:id])
   end
