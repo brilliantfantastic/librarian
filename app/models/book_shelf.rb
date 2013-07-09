@@ -6,4 +6,8 @@ class BookShelf < ActiveRecord::Base
 
   validates :name, presence: true
   validates :user, presence: true
+
+  def self.for(user)
+    where(user_id: user.id)
+  end
 end

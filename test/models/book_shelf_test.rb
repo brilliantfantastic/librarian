@@ -27,4 +27,21 @@ describe BookShelf do
     book_shelf.valid?.must_equal false
     book_shelf.errors.full_messages.must_include "Name can't be blank"
   end
+
+  describe '.for' do
+    before do
+      other = FactoryGirl.create :other_user
+      @shelf1 = BookShelf.create(name: 'Childrens', user_id: other.id)
+      @shelf2 = BookShelf.create(name: 'Adult', user_id: other.id)
+    end
+
+    it 'only returns the bookshelves owned by the user' do
+      user = FactoryGirl.create :user
+      user_shelf = FactoryGirl.create :book_shelf, user: user
+      user_shelves = BookShelf.for(user)
+      user_shelves.must_include user_shelf
+      user_shelves.wont_include @shelf1
+      user_shelves.wont_include @shelf2
+    end
+  end
 end
