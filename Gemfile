@@ -22,4 +22,5 @@ end
 group :test, :development do
   gem 'minitest-rails'
   gem 'factory_girl_rails'
+  gem 'm'
 end
