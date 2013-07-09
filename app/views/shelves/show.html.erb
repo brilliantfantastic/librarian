@@ -1,5 +1,7 @@
 <h1><%= @shelf.name %></h1>
 
+<%= link_to 'Add a Book', new_shelf_book_path(@shelf) %>
+
 <ul class='books'>
   <% @shelf.books.each do |book| %>
     <li class='book'><%= book.name %></li>
