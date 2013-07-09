@@ -4,13 +4,15 @@ class BooksController < ApplicationController
   end
 
   def new
+    @shelf = BookShelf.find(params[:shelf_id])
     @book = Book.new
   end
 
   def create
-    @book = Book.new(params[:book])
-    if @book.save
-      redirect_to book_path(@book)
+    @shelf = BookShelf.find(params[:shelf_id])
+    @book = @shelf.books.create(params[:book])
+    if @book.valid?
+      redirect_to shelf_book_path(@shelf, @book)
     else
       render :new
     end

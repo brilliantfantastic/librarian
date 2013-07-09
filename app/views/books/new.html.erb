@@ -10,7 +10,7 @@
   </div>
 <% end %>
 
-<%= form_for @book do |f| %>
+<%= form_for @book, url: shelf_books_path(@shelf) do |f| %>
 
   <div class='field'>
     <%= f.label :name, 'Book Name' %>
