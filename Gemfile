@@ -16,11 +16,15 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
-  gem 'minitest-rails-capybara'
 end
 
 group :test, :development do
   gem 'minitest-rails'
   gem 'factory_girl_rails'
   gem 'm'
+end
+
+group :test do
+  gem 'selenium-webdriver'
+  gem 'minitest-rails-capybara'
 end
