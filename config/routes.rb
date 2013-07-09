@@ -10,5 +10,7 @@ Librarian::Application.routes.draw do
     resources :books, only: [:new, :create, :show]
   end
 
-  root :to => 'reading_materials#index'
+  match '/library' => 'shelves#index'
+
+  root :to => redirect('/signin')
 end
