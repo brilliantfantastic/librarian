@@ -4,5 +4,6 @@ class BookShelf < ActiveRecord::Base
   belongs_to :user
   has_many :books
 
+  validates :name, presence: true
   validates :user, presence: true
 end
