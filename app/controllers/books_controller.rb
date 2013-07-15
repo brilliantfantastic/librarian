@@ -17,6 +17,7 @@ class BooksController < ApplicationController
   def create
     @shelf = BookShelf.find(params[:shelf_id])
     ensure_shelf_visible @shelf
+    cover = params[:book].delete(:cover)
     @book = @shelf.books.create(params[:book])
     if @book.valid?
       redirect_to shelf_book_path(@shelf, @book)
