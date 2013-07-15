@@ -19,6 +19,7 @@ group :development do
 end
 
 group :test, :development do
+  gem 'pry'
   gem 'minitest-rails'
   gem 'factory_girl_rails'
   gem 'm'
