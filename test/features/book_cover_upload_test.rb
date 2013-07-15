@@ -15,7 +15,7 @@ describe 'Book Cover Upload Feature Test' do
       click_on 'Create Book'
     end
 
-    current_path.must_ shelf_book_path(shelf, Book.last)
+    current_path.must_equal shelf_book_path(shelf, Book.last)
     page.must_have_xpath "//img[@src='public/uploads/inferno.jpg']"
   end
 end
