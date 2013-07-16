@@ -30,5 +30,20 @@ describe Api::ShelvesController do
         body[0]['user_id'].must_equal @shelf.user_id
       end
     end
+
+    describe "GET 'show'" do
+      it 'returns a serialized bookshelf' do
+        get :show, id: @shelf, format: :json
+        response.success?.must_equal true
+        body = JSON.parse response.body
+        body['name'].must_equal @shelf.name
+        body['user_id'].must_equal @shelf.user_id
+      end
+
+      it 'returns a 404 if the shelf does not exist' do
+        get :show, id: -1, format: :json
+        response.status.must_equal 404
+      end
+    end
   end
 end
