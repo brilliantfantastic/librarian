@@ -11,6 +11,7 @@ end
 
 gem 'jquery-rails'
 gem 'sorcery'
+gem 'carrierwave'
 
 group :development do
   gem 'better_errors'
