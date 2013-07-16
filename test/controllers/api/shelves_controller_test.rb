@@ -11,6 +11,11 @@ describe Api::ShelvesController do
       get :show, id: 1, format: :json
       response.status.must_equal 401
     end
+
+    it 'rejects for create' do
+      post :create, format: :json
+      response.status.must_equal 401
+    end
   end
 
   describe 'while authenticated' do
@@ -43,6 +48,29 @@ describe Api::ShelvesController do
       it 'returns a 404 if the shelf does not exist' do
         get :show, id: -1, format: :json
         response.status.must_equal 404
+      end
+    end
+
+    describe "POST 'create'" do
+      it 'returns the created serialized bookshelf' do
+        book_shelf = FactoryGirl.build :book_shelf, user: nil
+        json = book_shelf.as_json.delete_if do |k, v|
+          k == 'created_at' || k == 'updated_at'
+        end
+        post :create, format: :json, book_shelf: json
+        response.status.must_equal 201
+        body = JSON.parse response.body
+        body['name'].must_equal book_shelf.name
+        body['user_id'].must_equal @user.id
+      end
+
+      it 'returns a 422 if the bookshelf is invalid' do
+        book_shelf = FactoryGirl.build :book_shelf, user: nil, name: nil
+        json = book_shelf.as_json.delete_if do |k, v|
+          k == 'created_at' || k == 'updated_at'
+        end
+        post :create, format: :json, book_shelf: json
+        response.status.must_equal 422
       end
     end
   end
