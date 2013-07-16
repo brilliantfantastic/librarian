@@ -1,2 +1,6 @@
 <h1><%= @book.name %></h1>
 <h2><%= @book.isbn %></h2>
+
+<div class='cover'>
+  <%= image_tag(@book.cover_url) %>
+</div>
