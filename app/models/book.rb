@@ -1,5 +1,7 @@
 class Book < ActiveRecord::Base
-  attr_accessible :cover_url, :isbn, :name, :name_confirmation
+  mount_uploader :cover, CoverUploader
+
+  attr_accessible :cover, :isbn, :name, :name_confirmation
 
   belongs_to :book_shelf
 
