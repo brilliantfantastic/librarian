@@ -1,5 +1,5 @@
 class Book < ActiveRecord::Base
-  attr_accessible :isbn, :name, :name_confirmation
+  attr_accessible :cover_url, :isbn, :name, :name_confirmation
 
   belongs_to :book_shelf
 
