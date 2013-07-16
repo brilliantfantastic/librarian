@@ -1,9 +1,16 @@
 require 'test_helper'
 
 describe Api::ShelvesController do
-  it 'rejects if no one is logged in' do
-    get :index, format: :json
-    response.status.must_equal 401
+  describe 'while unauthenticated' do
+    it 'rejects for index' do
+      get :index, format: :json
+      response.status.must_equal 401
+    end
+
+    it 'rejects for show' do
+      get :show, id: 1, format: :json
+      response.status.must_equal 401
+    end
   end
 
   describe 'while authenticated' do

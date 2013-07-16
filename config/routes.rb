@@ -13,7 +13,7 @@ Librarian::Application.routes.draw do
   match '/library' => 'shelves#index'
 
   namespace :api, defaults: { format: :json } do
-    resources :shelves, only: [:index]
+    resources :shelves, only: [:index, :show]
   end
 
   root :to => redirect('/signin')

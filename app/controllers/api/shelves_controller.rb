@@ -6,6 +6,9 @@ class Api::ShelvesController < ApplicationController
     respond_with BookShelf.for(current_user)
   end
 
+  def show
+  end
+
   private
 
   def login_from_http_basic
