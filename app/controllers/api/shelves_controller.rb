@@ -20,4 +20,8 @@ class Api::ShelvesController < Api::BaseController
     respond_with shelf
   end
 
+  def destroy
+    respond_with BookShelf.for(current_user).destroy(params[:id])
+  end
+
 end

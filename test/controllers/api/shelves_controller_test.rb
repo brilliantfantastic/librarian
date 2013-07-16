@@ -21,6 +21,11 @@ describe Api::ShelvesController do
       put :update, id: 1, format: :json
       response.status.must_equal 401
     end
+
+    it 'rejects for destroy' do
+      delete :destroy, id: 1, format: :json
+      response.status.must_equal 401
+    end
   end
 
   describe 'while authenticated' do
@@ -102,6 +107,18 @@ describe Api::ShelvesController do
 
       it 'returns a 404 if the bookshelf does not exist' do
         put :update, format: :json, id: -1
+        response.status.must_equal 404
+      end
+    end
+
+    describe "DELETE 'destroy'" do
+      it 'deletes the bookshelf' do
+        delete :destroy, id: @shelf, format: :json
+        response.success?.must_equal true
+      end
+
+      it 'returns a 404 if the bookshelf does not exist' do
+        delete :destroy, id: -1, format: :json
         response.status.must_equal 404
       end
     end
