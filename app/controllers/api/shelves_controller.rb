@@ -14,4 +14,10 @@ class Api::ShelvesController < Api::BaseController
     respond_with shelf, location: nil
   end
 
+  def update
+    shelf = BookShelf.update(params[:id], params[:book_shelf])
+    render json: shelf and return if shelf.valid?
+    respond_with shelf
+  end
+
 end

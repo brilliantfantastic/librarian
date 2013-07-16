@@ -16,6 +16,11 @@ describe Api::ShelvesController do
       post :create, format: :json
       response.status.must_equal 401
     end
+
+    it 'rejects for udpate' do
+      put :update, id: 1, format: :json
+      response.status.must_equal 401
+    end
   end
 
   describe 'while authenticated' do
@@ -71,6 +76,33 @@ describe Api::ShelvesController do
         end
         post :create, format: :json, book_shelf: json
         response.status.must_equal 422
+      end
+    end
+
+    describe "PUT 'update'" do
+      it 'returns the updated serialized bookshelf' do
+        @shelf.name = 'Cooking'
+        json = @shelf.as_json.delete_if do |k, v|
+          k == 'created_at' || k == 'updated_at'
+        end
+        put :update, format: :json, id: @shelf, book_shelf: json
+        response.success?.must_equal true
+        body = JSON.parse response.body
+        body['name'].must_equal @shelf.name
+      end
+
+      it 'returns a 422 if the bookshelf is invalid' do
+        @shelf.name = ''
+        json = @shelf.as_json.delete_if do |k, v|
+          k == 'created_at' || k == 'updated_at'
+        end
+        put :update, format: :json, id: @shelf, book_shelf: json
+        response.status.must_equal 422
+      end
+
+      it 'returns a 404 if the bookshelf does not exist' do
+        put :update, format: :json, id: -1
+        response.status.must_equal 404
       end
     end
   end
